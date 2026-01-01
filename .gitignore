@@ -1,0 +1,30 @@
+﻿# Node
+node_modules/
+
+# Composer
+/vendor/
+
+# Environment files
+.env
+.env.*
+
+# Laravel storage
+/storage/
+/storage/*
+/public/storage
+
+# Build outputs
+/public/build/
+public/hot
+
+# IDEs
+/.idea/
+/.vscode/
+
+# Logs
+/storage/logs/
+npm-debug.log
+yarn-error.log
+
+# Misc
+.DS_Store
