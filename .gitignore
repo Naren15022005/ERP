@@ -14,8 +14,16 @@ node_modules/
 /public/storage
 
 # Build outputs
+// Build outputs
 /public/build/
 public/hot
+
+# Frontend build/cache (do not commit)
+frontend/.angular/
+frontend/dist/
+frontend/build/
+frontend/node_modules/
+frontend/.cache/
 
 # IDEs
 /.idea/
