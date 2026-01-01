@@ -1,0 +1,50 @@
+@tailwind base;
+
+/* Place base layer immediately after `@tailwind base` so Tailwind can properly
+   apply and merge user base styles before components/utilities. */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body, app-root { height: 100%; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+:root {
+  --bg-card: #232a34; /* azul gris oscuro, ligeramente más oscuro */
+}
+
+/* Utility for card background using the css variable */
+.bg-card {
+  background: var(--bg-card) !important;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+/* Print + mobile-focused dashboard styles: give print priority and adapt for small screens */
+@media print, (max-width: 768px) {
+  /* Improve color printing fidelity */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Reduce paddings and shadows for compact print/mobile view */
+  .p-6 { padding: 0.5rem !important; }
+  .card { box-shadow: none !important; background: #fff !important; color: #111 !important; }
+  .bg-card { background: #fff !important; }
+
+  /* Hide interactive controls that don't make sense in print or compact view */
+  .btn, .dropdown, .loading, .dropdown-content, .grid-overlay, .debug-drawer { display: none !important; }
+
+  /* Make cards full-width stacked (mobile-first) */
+  .mt-6.relative { display: block !important; }
+  .card { width: 100% !important; }
+
+  /* Chart sizing: prefer measured numeric heights and make them taller on small screens/print */
+  apx-chart { width: 100% !important; height: auto !important; min-height: 220px !important; }
+
+  /* Separator style visible in print/mobile */
+  .dashboard-separator { border-bottom: 1px solid rgba(0,0,0,0.12) !important; margin: 4px 0 !important; }
+}

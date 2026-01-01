@@ -1,0 +1,66 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
+
+@Component({
+  selector: 'app-sales-today-widget',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="w-full h-full">
+      <h2 class="text-sm text-base-content/70 pr-10">{{ title }}</h2>
+      @if (loading) {
+        <div class="flex justify-center items-center h-20">
+          <span class="loading loading-spinner loading-md"></span>
+        </div>
+      } @else if (error) {
+        <div class="alert alert-error">
+          <span class="text-xs">{{ error }}</span>
+        </div>
+      } @else {
+        <div class="text-3xl font-extrabold text-violet-500 mt-2">{{ total | currency:'USD':'symbol':'1.0-0' }}</div>
+        <div class="text-xs text-base-content/60 mt-2">{{ transactions }} transacciones</div>
+      }
+    </div>
+  `
+})
+export class SalesTodayWidgetComponent implements OnInit {
+  @Input() initialData: any = null;
+  title = 'Ventas del Día';
+  loading = true;
+  error: string | null = null;
+  total = 0;
+  transactions = 0;
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    if (this.initialData) {
+      this.total = this.initialData.total ?? 0;
+      this.transactions = this.initialData.transactions ?? 0;
+      this.loading = false;
+    } else {
+      this.loadData();
+    }
+  }
+
+  private loadData() {
+    // TODO: Replace with actual API endpoint
+    this.http.get<any>(`${environment.apiUrl}/dashboard/widgets/sales-today`).subscribe({
+      next: (data) => {
+        this.total = data.total || 0;
+        this.transactions = data.transactions || 0;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Error al cargar datos';
+        this.loading = false;
+        // For now, show placeholder data
+        this.total = 0;
+        this.transactions = 0;
+      }
+    });
+  }
+}
+

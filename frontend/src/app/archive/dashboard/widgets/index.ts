@@ -1,0 +1,14 @@
+// Widget components exports for easy importing
+export { SalesTodayWidgetComponent } from './sales-today/sales-today-widget.component';
+export { SalesWeekWidgetComponent } from './sales-week/sales-week-widget.component';
+export { SalesMonthWidgetComponent } from './sales-month/sales-month-widget.component';
+export { ProductsTotalWidgetComponent } from './products-total/products-total-widget.component';
+export { ProductsLowStockWidgetComponent } from './products-low-stock/products-low-stock-widget.component';
+export { PurchasesMonthWidgetComponent } from './purchases-month/purchases-month-widget.component';
+export { PurchasesPendingWidgetComponent } from './purchases-pending/purchases-pending-widget.component';
+export { SuppliersTotalWidgetComponent } from './suppliers-total/suppliers-total-widget.component';
+export { SuppliersTopWidgetComponent } from './suppliers-top/suppliers-top-widget.component';
+export { CustomersTotalWidgetComponent } from './customers-total/customers-total-widget.component';
+export { CustomersTopWidgetComponent } from './customers-top/customers-top-widget.component';
+export { InventoryValueWidgetComponent } from './inventory-value/inventory-value-widget.component';
+export { InventoryMovementsWidgetComponent } from './inventory-movements/inventory-movements-widget.component';
